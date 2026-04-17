@@ -1,12 +1,12 @@
 x-environment: &default-environment
   DATABASE_URL: ${DATABASE_URL}
-  VALKEY_URL: ${VALKEY_URL}
   SECRET_KEY: ${SECRET_KEY}
   PORT: ${PORT}
   EMAIL_URL: ${EMAIL_URL}
   GLITCHTIP_DOMAIN: ${GLITCHTIP_DOMAIN}
   DEFAULT_FROM_EMAIL: ${DEFAULT_FROM_EMAIL}
   CELERY_WORKER_AUTOSCALE: ${CELERY_WORKER_AUTOSCALE}
+  VALKEY_URL: ${VALKEY_URL}
 
 x-depends_on: &default-depends_on
   - postgres
@@ -31,9 +31,11 @@ services:
     profiles:
       - local
 
-  # valkey: # Optional, but offers better performance. Uncomment and set VALKEY_URL to enable.
-  #  image: valkey/valkey
-  #  restart: unless-stopped
+  valkey:
+    image: valkey/valkey
+    restart: unless-stopped
+    networks:
+      - shared-net
 
   web:
     image: glitchtip/glitchtip
