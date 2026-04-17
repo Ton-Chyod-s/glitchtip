@@ -62,8 +62,8 @@ Após iniciar, acesse: **http://localhost:8000**
 
 ## Arquivo Compose
 
-- Postgres local (comentado) - use `docker compose --profile local up` para ativar
-- Valkey/Redis (comentado) - descomente para cache
+- Postgres local (perfil `local`) - use `docker compose --profile local up` para ativar
+- Valkey - ativo por padrão (usado como cache/fila pelo Celery)
 - Web (Principal) - conecta ao banco Neon
 - Rede compartilhada: `shared-net` (externa)
 
