@@ -52,7 +52,7 @@ services:
 
 networks:
   shared-net:
-    external: true
+    driver: bridge
     
 volumes:
   pg-data:
